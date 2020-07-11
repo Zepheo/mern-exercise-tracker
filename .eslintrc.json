@@ -1,0 +1,30 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "react-app"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "semi": "error",
+        "quotes": ["error", "single"],
+        "indent": ["error", 2],
+        "react/jsx-filename-extension": "off",
+        "jsx-quotes": ["error", "prefer-single"],
+        "no-underscore-dangle": "off",
+        "no-console": "off"
+    }
+}

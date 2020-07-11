@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 const exerciseSchema = new Schema({
   username: { type: String, required: true },
@@ -11,4 +11,4 @@ const exerciseSchema = new Schema({
 
 const Exercise = model('Exercise', exerciseSchema);
 
-export default Exercise;
+module.exports = Exercise;
