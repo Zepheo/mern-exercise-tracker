@@ -139,7 +139,7 @@ export default function EditExercise({ match }) {
             }}
           />
         </MuiPickersUtilsProvider>
-        <Button type='submit'>Update Exercise</Button>
+        <Button type='submit' variant='contained'>Update Exercise</Button>
       </form>
     </div>
   );

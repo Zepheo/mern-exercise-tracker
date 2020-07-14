@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 800,
   },
   formInput: {
-    width: '100%',
+    width: '90%',
     margin: 10,
   },
 }));
@@ -37,7 +37,7 @@ export default function CreateExercise() {
   const { container, formContainer, formInput } = useStyles();
   const history = useHistory();
   const [state, setState] = useState({
-    username: '', description: '', duration: 0, date: new Date(), users: [],
+    username: '', description: '', duration: '', date: new Date(), users: [],
   });
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function CreateExercise() {
 
   return (
     <div className={container}>
-      <Typography variant='h3'>Create New Exercise Log</Typography>
+      <Typography variant='h3' align='center'>Create New Exercise Log</Typography>
       <form action='.' onSubmit={onSubmit} className={formContainer}>
         <FormControl variant='outlined' className={formInput}>
           <InputLabel id='username-select-label'>Username</InputLabel>
@@ -105,7 +105,7 @@ export default function CreateExercise() {
           required
           id='duration'
           value={state.duration}
-          label='Duration'
+          label='Duration (in minutes)'
           variant='outlined'
           onChange={onChangeDuration}
           autoComplete='off'
@@ -119,7 +119,7 @@ export default function CreateExercise() {
             format='dd/MM/yyyy'
             margin='normal'
             id='date-picker-inline'
-            label='Date picker inline'
+            label='Date'
             value={state.date}
             onChange={onChangeDate}
             KeyboardButtonProps={{
@@ -127,7 +127,7 @@ export default function CreateExercise() {
             }}
           />
         </MuiPickersUtilsProvider>
-        <Button type='submit'>Create Exercise Log</Button>
+        <Button type='submit' variant='contained'>Create Exercise Log</Button>
       </form>
     </div>
   );

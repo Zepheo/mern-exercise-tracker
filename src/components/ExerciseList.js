@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {
+  TableContainer, Table, TableHead, TableRow, TableCell, TableBody, makeStyles,
+} from '@material-ui/core';
+import ExerciseListItem from './ExerciseListItem';
 
-import Exercise from './Exercise';
+const useStyles = makeStyles((theme) => ({
+  headerText: {
+    fontWeight: 'bold',
+  },
+}));
 
 export default function ExerciseList() {
   const [state, setState] = useState({ exercises: [] });
+  const { headerText } = useStyles();
 
   useEffect(() => {
     axios.get('/exercises')
@@ -21,31 +30,27 @@ export default function ExerciseList() {
     setState({ exercises: state.exercises.filter((el) => el._id !== id) });
   };
 
-  const exerciseList = () => state.exercises.map((currentexercise) => (
-    <Exercise
-      exercise={currentexercise}
-      deleteExercise={deleteExercise}
-      key={currentexercise._id}
-    />
-  ));
-
   return (
-    <div>
-      <h3>Logged Exercises</h3>
-      <table className='table'>
-        <thead className='thead-light'>
-          <tr>
-            <th>Username</th>
-            <th>Description</th>
-            <th>Duration</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          { exerciseList() }
-        </tbody>
-      </table>
-    </div>
+    <TableContainer>
+      <Table aria-label='exercise table'>
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell className={headerText}>Username</TableCell>
+            <TableCell className={headerText}>Activity</TableCell>
+            <TableCell />
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          { state.exercises.map((currentexercise) => (
+            <ExerciseListItem
+              exercise={currentexercise}
+              deleteExercise={deleteExercise}
+              key={currentexercise._id}
+            />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
